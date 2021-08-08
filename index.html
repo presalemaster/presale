@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.2.1/dist/chart.min.js"></script>
+    <!-- <link href="./css/main.css" rel="stylesheet"/> -->
+    <link rel="stylesheet" href="./new/assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="./new/assets/css/animate.min.css">
+    <link rel="stylesheet" href="./new/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./new/assets/css/slicknav.min.css">
+    <link rel="stylesheet" href="./new/assets/css/animation.css">
+    <link rel="stylesheet" href="./new/assets/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="./new/style.css?version=2">
+    <link rel="stylesheet" href="./new/assets/css/responsive.css">
+    <title>ASSgard Presale Dapp</title>
+</head>
+
+<body>
+    <div class="header-area wow fadeInDown header-absolate" id="nav"  data-edge-strategy="set">
+        <div class="container">
+            <div class="row py-sm-4 py-0">
+                <div class="col-2 d-block d-lg-none">
+                    <div class="mobile-menu"></div>
+                </div>
+                <div class="col-2 col-lg-2">
+                    <div class="logo-area">
+                        
+                    </div>
+                </div>
+                <div class="col-1 col-lg-8 d-none d-lg-block">
+                    <div class="main-menu text-center mt-0 mt-sm-4">
+                       
+                    </div>
+                </div>
+                <div class="col-7 col-lg-2 text-right">
+                    <button class="logibtn gradient-btn btn  walletConnect" id="walletConnect" style="color: #ffffff;
+                    background-color: #9e7231;
+                    border-color: #9e7231;">Connect
+                        Wallet</button>
+                    <p class="walletaddress" id="walletaddress"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="welcome-area wow fadeInUp " id="home">
+        <div id="particles-js"></div>
+        <div class="container mt-sm-2 mt-4">
+            <div class="row">
+                <div class="col-12  align-self-center">
+                    <div class="welcome-right">
+                        <div class="welcome-text text-center">
+                            <img src="./art/logo.png" alt="" width="30%" class="mb-5">
+                            <h1>Welcome to the $SHIBASS binance presale Dapp</h1>
+                            <h4 >See instructions below for how to buy tokens:</h4>
+                          
+                                <h4 class="text-center" style="margin-left: auto;margin-right: auto;;max-width:400px">
+                                    <canvas id="myChart" width="400" height="400"></canvas>
+                               
+                           </h4>
+                            <h3>How to Buy</h3>
+                            <ul class="py-4">
+                                <li>
+                                    Connect your trust or metamask wallet using the button on the top right of this
+                                    page.
+                                </li>
+                                <li>
+                                    if in trustwallet, ensure you have selected Smartchain at the top of the display.
+                                </li>
+                                <li>
+                                    Insert a value into the field, in BNB, and then click purchase and approve in your
+                                    wallet. for each BNB you will recieve 2 trillion tokens
+                                </li>
+                                <li>
+                                    Congratulations, you have been successful in your purchase. Pre-sale tokens will be
+                                    deposited immediately into your wallet.
+                                </li>
+                                
+                            </ul>
+                            
+                        </div>
+                                
+                            
+                        <div class="row">
+                            
+                        <div  class="welcome-btn row py-5">
+                            <div id="purchaseDiv" style="display: none;" class="col-md-6 mx-auto purchaseform my-4 text-center">
+                                <h4 class="accentuated">BNB PURCHASE AMOUNT:</h4>
+                                <input id="bnbvalue" onchange="changeText()" onkeyup="changeText()" class="form-control" type="number" max=2 min=0.001>
+                                <br>
+                                <a class="btn margintop" style="color: #ffffff;
+                                background-color: #9e7231;
+                                border-color: #9e7231;" id = "purchaseButton" onclick="Purchase()">Purchase</a>
+                                
+                            </div>
+                            <div id="collectDiv" style = "display:none" class="col-md-6 mx-auto purchaseform my-4 text-center">
+                                <h4 class="accentuated">COLLECT TOKENS BELOW:</h4>
+                                
+                                <br>
+                                <a class="btn margintop" style="color: #ffffff;
+                                background-color: #9e7231;
+                                border-color: #9e7231;" onclick="collectToken()">Collect Your tokens</a>
+                            </div>
+                            
+
+                        </div>
+                        <div class="logos">
+                            <img src="art/LaunchGardAltTextTrans.png" width="20%"/>
+                            <img src="art/SafeGard™AltTextTrans.png" width="20%"/>
+                        </div>
+                        
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="container">
+                <div class="logo"></div>
+                <h1></h1>
+                <button class="btn btn-success confirmbutton">CONFIRM</button>
+                <button class="btn btn-danger cancelbutton">CANCEL</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="./new/assets/js/jquery-2.2.4.min.js"></script>
+    <script src="./new/assets/js/popper.js"></script>
+    <script src="./new/assets/js/owl.carousel.min.js"></script>
+    <script src="./new/assets/js/wow.min.js"></script>
+    <script src="./new/assets/js/bootstrap.min.js"></script>
+    <script src="./new/assets/js/jquery.slicknav.min.js"></script>
+    <script src="./new/assets/js/particles.min.js"></script>
+    <script src="./new/assets/js/main.js"></script>
+    <script>
+        particlesJS('particles-js',
+            {
+                "particles": {
+                    "number": {
+                        "value": 66,
+                        "density": {
+                            "enable": true,
+                            "value_area": 1025.908125981517
+                        }
+                    },
+                    "color": {
+                        "value": "#9e7231"
+                    },
+                    "shape": {
+                        "type": "circle",
+                        "stroke": {
+                            "width": 0,
+                            "color": "#000000"
+                        },
+                        "polygon": {
+                            "nb_sides": 6
+                        },
+                        "image": {
+                            "src": "img/github.svg",
+                            "width": 100,
+                            "height": 100
+                        }
+                    },
+                    "opacity": {
+                        "value": 0.3083770200778445,
+                        "random": false,
+                        "anim": {
+                            "enable": false,
+                            "speed": 1,
+                            "opacity_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "size": {
+                        "value": 8.33451405615796,
+                        "random": true,
+                        "anim": {
+                            "enable": false,
+                            "speed": 40,
+                            "size_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "line_linked": {
+                        "enable": true,
+                        "distance": 116.68319678621143,
+                        "color": "#ffffff",
+                        "opacity": 0.35838410441479224,
+                        "width": 0.833451405615796
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 6,
+                        "direction": "none",
+                        "random": false,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false,
+                        "attract": {
+                            "enable": false,
+                            "rotateX": 1166.8319678621144,
+                            "rotateY": 1200
+                        }
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": {
+                            "enable": false,
+                            "mode": "grab"
+                        },
+                        "onclick": {
+                            "enable": true,
+                            "mode": "push"
+                        },
+                        "resize": true
+                    },
+                    "modes": {
+                        "grab": {
+                            "distance": 400,
+                            "line_linked": {
+                                "opacity": 1
+                            }
+                        },
+                        "bubble": {
+                            "distance": 400,
+                            "size": 40,
+                            "duration": 2,
+                            "opacity": 8,
+                            "speed": 3
+                        },
+                        "repulse": {
+                            "distance": 200,
+                            "duration": 0.4
+                        },
+                        "push": {
+                            "particles_nb": 4
+                        },
+                        "remove": {
+                            "particles_nb": 2
+                        }
+                    }
+                },
+                "retina_detect": true
+            }
+
+        );
+
+    </script>
+
+    <!-- Bootstrap Bundle with Popper -->
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+
+    <script src="./js/web3.js?27"></script>
+    <SCRIPT>
+        var modal = document.getElementById("myModal");
+        var PurchaseButton = document.getElementById("purchaseButton");
+        var bnbVal = document.getElementById("bnbvalue");
+        var btn = document.getElementsByClassName("confirmbutton")[0];
+        var amountSpan = document.getElementById("BNBVALUE");
+        var walletbtn = document.getElementById("walletConnect");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("cancelbutton")[0];
+
+        // When the user clicks on the button, open the modal
+        function Purchase() {
+            console.log(amountSpan);
+            console.log(bnbVal);
+            buyToken();
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+        walletbtn.onclick = connectWallet;
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        function changeText(){
+            //console.log("Im changing");
+            console.log(bnbVal.value)
+            var tokens = 2000000000000 * bnbVal.value;
+            console.log(tokens);
+            PurchaseButton.innerText = "Purchase " + tokens + " Tokens"
+            
+        }
+    </SCRIPT>
+</body>
+<!-- Latest jQuery --> 
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: [ 'Left available(10%)','Bnb Raised (90%)'],
+        datasets: [{
+          label: '# Distribution',
+          data: [1000000000, 9000000000],
+          backgroundColor: [
+          'rgba(254,198,107,0.2)',
+          'rgba(126,198,107,0.2)',
+          ],
+          borderColor: [
+          'rgb(254,198,107,1)',
+          'rgba(126,198,107,1)',
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        plugins: {
+          labels: {
+            render: 'label'
+          }
+        }
+      }
+    });
+    </script>
+</html>
