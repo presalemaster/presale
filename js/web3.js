@@ -260,7 +260,7 @@ async function getData() {
 		console.log("getting data");
         let userAddress = accounts[0];
 		// gets the current state of the presale variable
-        preSaleContract.methods.canClaim().call({from: accounts[0]}).then(function(returnedVal){
+        preSaleContract.methods.canClaim(userAddress).call({from: accounts[0]}).then(function(returnedVal){
 			console.log(returnedVal);
 			//we now have the state variabler
 			if(returnedVal == false || returnedVal == "false"){
